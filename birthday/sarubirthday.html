@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy 23rd Birthday! 🎉</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+            min-height: 100vh;
+            font-family: 'Georgia', serif;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .balloon {
+            position: absolute;
+            font-size: 30px;
+            animation: float-balloon 6s infinite ease-in-out;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            animation: fall 3s infinite linear;
+        }
+
+        @keyframes float-balloon {
+            0%, 100% { transform: translateY(0px) rotate(-2deg); }
+            50% { transform: translateY(-20px) rotate(2deg); }
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+
+        .card-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            border: 3px solid #ff69b4;
+        }
+
+        .main-title {
+            font-size: 3.5rem;
+            background: linear-gradient(45deg, #ff69b4, #ff1493, #dc143c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+            animation: glow 2s infinite alternate;
+        }
+
+        .age-highlight {
+            font-size: 4rem;
+            color: #ff1493;
+            font-weight: bold;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+            margin: 15px 0;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: #8b4513;
+            font-style: italic;
+        }
+
+        @keyframes glow {
+            0% { text-shadow: 0 0 20px #ff69b4; }
+            100% { text-shadow: 0 0 30px #ff1493, 0 0 40px #dc143c; }
+        }
+
+        .photo-section {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .photo-frame {
+            width: 250px;
+            height: 250px;
+            border: 8px solid #ff69b4;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ffb6c1, #ffc0cb);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .photo-frame:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.3);
+            border-color: #ff1493;
+        }
+
+        .photo-placeholder {
+            font-size: 3rem;
+            color: #ff69b4;
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        .photo-text {
+            position: absolute;
+            bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.2rem;
+            color: #8b4513;
+            font-style: italic;
+            text-align: center;
+            width: 100%;
+        }
+
+        .wishes-grid {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 500px;
+            height: 500px;
+        }
+
+        .wish-icon {
+            background: transparent;
+            border: none;
+            padding: 15px;
+            box-shadow: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: absolute;
+            text-align: center;
+            width: 100px;
+            height: 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .wish-icon:hover {
+            transform: scale(1.3);
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 2px solid #ff69b4;
+        }
+
+        .wish-icon:before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transform: rotate(45deg);
+            transition: all 0.5s ease;
+            opacity: 0;
+        }
+
+        .wish-icon:hover:before {
+            animation: shine 0.8s ease-in-out;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); opacity: 0; }
+        }
+
+        .icon-emoji {
+            font-size: 3rem;
+            margin-bottom: 5px;
+            animation: bounce 2s infinite;
+            transition: all 0.3s ease;
+            filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+        }
+
+        .wish-icon:hover .icon-emoji {
+            animation: none;
+            transform: scale(1.3) rotate(10deg);
+            filter: drop-shadow(3px 3px 6px rgba(0, 0, 0, 0.5));
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-8px); }
+            60% { transform: translateY(-4px); }
+        }
+
+        .icon-label {
+            font-size: 0.8rem;
+            color: #8b4513;
+            font-weight: bold;
+            text-align: center;
+            transition: all 0.3s ease;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.7);
+            padding: 2px 6px;
+            border-radius: 10px;
+        }
+
+        .wish-icon:hover .icon-label {
+            color: white;
+            transform: scale(1.1);
+            background: rgba(255, 105, 180, 0.9);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .interactive-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            border: 3px solid #ff69b4;
+            margin-bottom: 30px;
+        }
+
+        .birthday-btn {
+            background: linear-gradient(45deg, #ff69b4, #ff1493);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(255, 20, 147, 0.3);
+            font-weight: bold;
+        }
+
+        .birthday-btn:hover {
+            background: linear-gradient(45deg, #ff1493, #dc143c);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(255, 20, 147, 0.5);
+        }
+
+        .cake-animation {
+            font-size: 4rem;
+            margin: 20px 0;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .cake-animation:hover {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        .message-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #ff69b4, #ff1493);
+            color: white;
+            padding: 30px 40px;
+            border-radius: 20px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            z-index: 1000;
+            opacity: 0;
+            transition: all 0.4s ease;
+            border: 4px solid #fff;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 80%;
+        }
+
+        .message-popup.show {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 2px solid #ffb6c1;
+        }
+
+        .footer-text {
+            font-size: 1.3rem;
+            color: #8b4513;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+
+        .heart-animation {
+            font-size: 2rem;
+            animation: heartbeat 1.5s infinite;
+            cursor: pointer;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        @media (max-width: 768px) {
+            .main-title { font-size: 2.5rem; }
+            .age-highlight { font-size: 3rem; }
+            .wishes-grid { grid-template-columns: 1fr; }
+            .card-container { padding: 10px; }
+        }
+
+        .sparkle-trail {
+            position: absolute;
+            pointer-events: none;
+            font-size: 20px;
+            animation: sparkle-fade 1s ease-out forwards;
+        }
+
+        @keyframes sparkle-fade {
+            0% { opacity: 1; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0; transform: scale(0) translateY(-50px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-elements">
+        <div class="balloon" style="top: 10%; left: 10%; animation-delay: 0s;">🎈</div>
+        <div class="balloon" style="top: 20%; left: 80%; animation-delay: 1s;">🎀</div>
+        <div class="balloon" style="top: 60%; left: 5%; animation-delay: 2s;">🎂</div>
+        <div class="balloon" style="top: 70%; left: 90%; animation-delay: 1.5s;">🎁</div>
+        <div class="balloon" style="top: 40%; left: 85%; animation-delay: 0.5s;">🌟</div>
+    </div>
+
+    <div class="card-container">
+        <div class="header">
+            <div class="main-title">Happy Birthday!</div>
+            <div class="age-highlight">23</div>
+            <div class="subtitle">To the most amazing sister in the world! ✨</div>
+        </div>
+
+        <div class="photo-section">
+            <div class="photo-frame" onclick="photoClick()">
+                <div class="photo-placeholder">
+                    📸<br>
+                    <span style="font-size: 1.5rem;">Add Your<br>Beautiful Photo<br>Here!</span>
+                </div>
+            </div>
+
+        </div>
+
+
+
+        <div class="wishes-grid">
+            <div class="wish-icon" onclick="showWishes('dreams')" style="top: 0%; left: 50%; transform: translate(-50%, -50%);">
+                <div class="icon-emoji">🌟</div>
+                <div class="icon-label">Dreams</div>
+            </div>
+
+            <div class="wish-icon" onclick="showWishes('love')" style="top: 25%; left: 93%; transform: translate(-50%, -50%);">
+                <div class="icon-emoji">💖</div>
+                <div class="icon-label">Love</div>
+            </div>
+
+            <div class="wish-icon" onclick="showWishes('success')" style="top: 75%; left: 93%; transform: translate(-50%, -50%);">
+                <div class="icon-emoji">🏆</div>
+                <div class="icon-label">Success</div>
+            </div>
+
+            <div class="wish-icon" onclick="showWishes('happiness')" style="top: 100%; left: 50%; transform: translate(-50%, -50%);">
+                <div class="icon-emoji">😊</div>
+                <div class="icon-label">Happiness</div>
+            </div>
+
+            <div class="wish-icon" onclick="showWishes('family')" style="top: 75%; left: 7%; transform: translate(-50%, -50%);">
+                <div class="icon-emoji">👨‍👩‍👧‍👦</div>
+                <div class="icon-label">Family</div>
+            </div>
+
+            <div class="wish-icon" onclick="showWishes('friendship')" style="top: 25%; left: 7%; transform: translate(-50%, -50%);">
+                <div class="icon-emoji">👭</div>
+                <div class="icon-label">Friends</div>
+            </div>
+        </div>
+
+
+
+        <div class="footer">
+            <div class="footer-text">
+                "Sisters are different flowers from the same garden" 🌺
+            </div>
+            <div class="footer-text">
+                You're not just my sister, you're my best friend, my inspiration, and my joy!
+            </div>
+            <div class="heart-animation" onclick="heartClick()">💖💖💖</div>
+            <div style="margin-top: 15px; font-size: 1.1rem; color: #dc143c;">
+                With all my love on your special day! 🎈
+            </div>
+        </div>
+    </div>
+
+    <div class="message-popup" id="messagePopup"></div>
+
+    <script>
+        let confettiInterval;
+        let wishCount = 0;
+
+        function showMessage(text, duration = 3000) {
+            const popup = document.getElementById('messagePopup');
+            popup.innerHTML = text;
+            popup.classList.add('show');
+            setTimeout(() => {
+                popup.classList.remove('show');
+            }, duration);
+        }
+
+        function showWishes(type) {
+            const wishesData = {
+                dreams: [
+                    "🌟 May all your dreams take flight this year and soar higher than ever before! ✈️",
+                    "🎯 Chase every goal with passion and watch them become your reality!",
+                    "💫 Your ambitions are as beautiful as you are - may they all come true!",
+                    "🎨 This year, may you discover new passions and talents within yourself!"
+                ],
+                love: [
+                    "💖 May your heart be filled with endless love and surrounded by amazing people! 👥",
+                    "🤗 Wishing you friendships that last a lifetime and memories that warm your soul!",
+                    "💕 May love find you in the most beautiful and unexpected ways!",
+                    "🌹 You deserve all the happiness and love this world has to offer!"
+                ],
+                adventures: [
+                    "🌍 May this year bring you incredible adventures and unforgettable journeys! 🗺️",
+                    "📸 Explore new places, try new things, and create amazing stories!",
+                    "🌅 May every sunset you see be more beautiful than the last!",
+                    "💃 Dance in the rain, laugh until your stomach hurts, live fully!"
+                ],
+                success: [
+                    "🏆 May success follow you in everything you do this year! 📈",
+                    "💪 Grow stronger, wiser, and more confident with each passing day!",
+                    "🪜 May every challenge become a stepping stone to greatness!",
+                    "⭐ Your potential is limitless - may this year prove it!"
+                ],
+                happiness: [
+                    "😊 May your smile light up every room you enter! ✨",
+                    "😄 Wishing you 365 days of laughter, joy, and pure happiness!",
+                    "☀️ May your heart be as light as a feather and as warm as sunshine!",
+                    "✨ Find magic in the little moments and joy in everyday miracles!"
+                ],
+                health: [
+                    "🌺 May you be blessed with perfect health and boundless energy! 💪",
+                    "🧘‍♀️ Take care of your beautiful soul and nurture your inner peace!",
+                    "✨ May you glow from the inside out with health and happiness!",
+                    "🌸 Wishing you strength in body, peace in mind, and joy in spirit!"
+                ],
+                family: [
+                    "👨‍👩‍👧‍👦 May your family bond grow stronger with each passing day! 💕",
+                    "🏠 Home is where the heart is, and yours is filled with love!",
+                    "👶 May family gatherings be filled with laughter and joy!",
+                    "💝 You are the precious gem that makes our family complete!"
+                ],
+                friendship: [
+                    "👭 May you be surrounded by friends who lift you higher! 🌟",
+                    "🤝 True friendship is a treasure - may yours multiply this year!",
+                    "🎉 May your circle be filled with genuine souls who celebrate you!",
+                    "💌 Distance means nothing when friendship means everything!"
+                ],
+                wisdom: [
+                    "🦉 May wisdom guide your decisions and clarity light your path! 💡",
+                    "📚 Learn something new every day and grow wiser with experience!",
+                    "🧠 Trust your intuition - it will never lead you astray!",
+                    "🌱 May you bloom with knowledge and flourish with understanding!"
+                ],
+                creativity: [
+                    "🎨 May your creative spirit paint the world in beautiful colors! 🌈",
+                    "✍️ Express yourself boldly and let your imagination run wild!",
+                    "🎭 Create art, make music, write stories - the world needs your gifts!",
+                    "💡 Innovation flows through you - may it inspire amazing creations!"
+                ],
+                peace: [
+                    "☮️ May inner peace be your constant companion this year! 🕊️",
+                    "🧘‍♀️ Find tranquility in chaos and calm in every storm!",
+                    "🌊 Let serenity wash over you like gentle ocean waves!",
+                    "🌸 May your mind be a garden of peaceful thoughts and positive vibes!"
+                ],
+                magic: [
+                    "✨ May magic follow you wherever you go this year! 🪄",
+                    "🌟 You ARE the magic - believe in your incredible power!",
+                    "🦄 May everyday miracles remind you how special you are!",
+                    "🎪 Life is a magical circus - enjoy every spectacular moment!"
+                ]
+            };
+
+            const wishes = wishesData[type];
+            const randomWish = wishes[Math.floor(Math.random() * wishes.length)];
+            showMessage(randomWish, 4000);
+            createSparkles(event.currentTarget);
+        }
+
+        function photoClick() {
+            showMessage("📸✨ This space is reserved for your sister's beautiful photo! Add her picture to make this card even more special and personal! 💖", 4000);
+            
+            // Photo frame animation
+            const frame = document.querySelector('.photo-frame');
+            frame.style.transform = 'scale(1.1) rotate(5deg)';
+            frame.style.borderColor = '#ff1493';
+            
+            setTimeout(() => {
+                frame.style.transform = 'scale(1) rotate(0deg)';
+                frame.style.borderColor = '#ff69b4';
+            }, 1000);
+            
+            // Create camera flash effect
+            const flash = document.createElement('div');
+            flash.style.position = 'fixed';
+            flash.style.top = '0';
+            flash.style.left = '0';
+            flash.style.width = '100%';
+            flash.style.height = '100%';
+            flash.style.background = 'rgba(255, 255, 255, 0.8)';
+            flash.style.zIndex = '9999';
+            flash.style.pointerEvents = 'none';
+            flash.style.opacity = '0';
+            flash.style.transition = 'opacity 0.1s ease';
+            
+            document.body.appendChild(flash);
+            
+            setTimeout(() => {
+                flash.style.opacity = '1';
+                setTimeout(() => {
+                    flash.style.opacity = '0';
+                    setTimeout(() => flash.remove(), 100);
+                }, 50);
+            }, 10);
+        }
+
+        function createSparkles(element) {
+            for (let i = 0; i < 5; i++) {
+                setTimeout(() => {
+                    const sparkle = document.createElement('div');
+                    sparkle.className = 'sparkle-trail';
+                    sparkle.innerHTML = '✨';
+                    sparkle.style.left = Math.random() * element.offsetWidth + 'px';
+                    sparkle.style.top = Math.random() * element.offsetHeight + 'px';
+                    element.appendChild(sparkle);
+                    
+                    setTimeout(() => sparkle.remove(), 1000);
+                }, i * 100);
+            }
+        }
+
+        function blowCandles() {
+            showMessage("🕯️ *Whoosh* The candles are blown out! Your wish is on its way! 🌟");
+            
+            // Cake animation
+            const cake = document.querySelector('.cake-animation');
+            cake.innerHTML = '🎂✨';
+            cake.style.transform = 'scale(1.3)';
+            
+            setTimeout(() => {
+                cake.innerHTML = '🎂';
+                cake.style.transform = 'scale(1)';
+            }, 2000);
+            
+            startConfetti();
+        }
+
+        function showSurprise() {
+            const surprises = [
+                "🎁 Surprise! You get a year full of amazing opportunities! ✨",
+                "🎉 Special delivery: 365 days of happiness coming your way! 📦",
+                "🌟 Surprise! You're getting a year of magical moments! ✨",
+                "🎈 Special gift: Unlimited hugs and love from your family! 🤗",
+                "💝 Surprise! This year brings you everything your heart desires! 💖"
+            ];
+            
+            const randomSurprise = surprises[Math.floor(Math.random() * surprises.length)];
+            showMessage(randomSurprise, 4000);
+            startConfetti();
+        }
+
+        function playBirthdaySong() {
+            showMessage("🎵 ♪ Happy Birthday to you! ♪ Happy Birthday to you! ♪ Happy Birthday dear Sister! ♪ Happy Birthday to you! ♪ 🎶", 5000);
+            
+            // Musical note animation
+            for (let i = 0; i < 8; i++) {
+                setTimeout(() => {
+                    createFloatingNote();
+                }, i * 300);
+            }
+        }
+
+        function createFloatingNote() {
+            const note = document.createElement('div');
+            note.innerHTML = '🎵';
+            note.style.position = 'fixed';
+            note.style.left = Math.random() * 100 + 'vw';
+            note.style.top = '100vh';
+            note.style.fontSize = '30px';
+            note.style.pointerEvents = 'none';
+            note.style.zIndex = '1000';
+            note.style.animation = 'float-up 3s ease-out forwards';
+            
+            document.body.appendChild(note);
+            
+            setTimeout(() => note.remove(), 3000);
+        }
+
+        function makeWish() {
+            wishCount++;
+            const wishes = [
+                "⭐ Wish #" + wishCount + ": May this year be your most amazing yet! ✨",
+                "🌟 Wish #" + wishCount + ": May all your dreams come true in beautiful ways! 💫",
+                "✨ Wish #" + wishCount + ": May happiness follow you wherever you go! 🌈",
+                "⭐ Wish #" + wishCount + ": May love surround you always! 💕",
+                "🌟 Wish #" + wishCount + ": May success be your constant companion! 🏆"
+            ];
+            
+            const randomWish = wishes[Math.floor(Math.random() * wishes.length)];
+            showMessage(randomWish);
+            
+            // Create shooting star effect
+            createShootingStar();
+        }
+
+        function createShootingStar() {
+            const star = document.createElement('div');
+            star.innerHTML = '⭐';
+            star.style.position = 'fixed';
+            star.style.top = '20%';
+            star.style.left = '-50px';
+            star.style.fontSize = '25px';
+            star.style.pointerEvents = 'none';
+            star.style.zIndex = '1000';
+            star.style.animation = 'shooting-star 2s ease-out forwards';
+            
+            document.body.appendChild(star);
+            
+            setTimeout(() => star.remove(), 2000);
+        }
+
+        function sendLove() {
+            showMessage("💕 Sending you all my love, hugs, and best wishes! You mean the world to me! 🤗💖", 4000);
+            
+            // Create floating hearts
+            for (let i = 0; i < 10; i++) {
+                setTimeout(() => {
+                    createFloatingHeart();
+                }, i * 200);
+            }
+        }
+
+        function createFloatingHeart() {
+            const heart = document.createElement('div');
+            heart.innerHTML = '💖';
+            heart.style.position = 'fixed';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.top = '100vh';
+            heart.style.fontSize = '25px';
+            heart.style.pointerEvents = 'none';
+            heart.style.zIndex = '1000';
+            heart.style.animation = 'float-up 4s ease-out forwards';
+            
+            document.body.appendChild(heart);
+            
+            setTimeout(() => heart.remove(), 4000);
+        }
+
+        function heartClick() {
+            showMessage("💖 You are loved beyond measure! Happy 23rd Birthday! 💖");
+            
+            // Heart explosion effect
+            for (let i = 0; i < 15; i++) {
+                setTimeout(() => {
+                    createFloatingHeart();
+                }, i * 100);
+            }
+        }
+
+        function startConfetti() {
+            if (confettiInterval) clearInterval(confettiInterval);
+            
+            confettiInterval = setInterval(() => {
+                createConfetti();
+            }, 100);
+            
+            setTimeout(() => {
+                clearInterval(confettiInterval);
+            }, 3000);
+        }
+
+        function createConfetti() {
+            const colors = ['#ff69b4', '#ff1493', '#ffd700', '#00ff00', '#00bfff', '#ff4500'];
+            const confetti = document.createElement('div');
+            
+            confetti.className = 'confetti';
+            confetti.style.left = Math.random() * 100 + 'vw';
+            confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            confetti.style.animationDelay = Math.random() * 2 + 's';
+            
+            document.querySelector('.floating-elements').appendChild(confetti);
+            
+            setTimeout(() => confetti.remove(), 3000);
+        }
+
+        // Add additional animations
+        const additionalStyles = document.createElement('style');
+        additionalStyles.textContent = `
+            @keyframes float-up {
+                0% { 
+                    transform: translateY(0) rotate(0deg);
+                    opacity: 1;
+                }
+                100% { 
+                    transform: translateY(-100vh) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+            
+            @keyframes shooting-star {
+                0% { 
+                    transform: translateX(0) translateY(0);
+                    opacity: 1;
+                }
+                100% { 
+                    transform: translateX(100vw) translateY(50vh);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(additionalStyles);
+
+        // Auto-create some confetti on load
+        setTimeout(() => {
+            startConfetti();
+        }, 1000);
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'970aa86c844246fe',t:'MTc1NTQ0OTI5NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
